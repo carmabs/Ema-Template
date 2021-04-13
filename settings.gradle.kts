@@ -1,1 +1,1 @@
-rootProject.name = "EMA-Template"
+rootProject.name = "Ema-Template"
