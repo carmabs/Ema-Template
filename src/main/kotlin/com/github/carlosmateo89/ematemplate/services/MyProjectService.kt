@@ -1,7 +1,7 @@
-package org.jetbrains.plugins.template.services
+package com.github.carlosmateo89.ematemplate.services
 
+import com.github.carlosmateo89.ematemplate.MyBundle
 import com.intellij.openapi.project.Project
-import org.jetbrains.plugins.template.MyBundle
 
 class MyProjectService(project: Project) {
 

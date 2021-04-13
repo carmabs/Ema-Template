@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.carlosmateo89.ematemplate.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.carlosmateo89.ematemplate.MyBundle
 
 class MyApplicationService {
 
