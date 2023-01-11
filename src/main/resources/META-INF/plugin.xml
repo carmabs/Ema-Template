@@ -1,11 +1,12 @@
 <idea-plugin>
-    <id>com.github.carlosmateo89.ematemplate</id>
+    <id>com.github.carmabs.ematemplate</id>
     <name>Ema-Template</name>
     <vendor>Carmabs</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>org.jetbrains.android</depends>
+    <depends>com.intellij.modules.androidstudio</depends>
     <depends>org.jetbrains.kotlin</depends>
     <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>
