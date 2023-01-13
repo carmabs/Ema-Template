@@ -1,6 +1,7 @@
 package com.github.carlosmateo89.ematemplate.config
 
 import com.android.tools.idea.wizard.template.*
+import org.jetbrains.kotlin.lombok.utils.capitalize
 
 /**
  * Created by Carlos Mateo Benito on 2022
@@ -15,9 +16,8 @@ import com.android.tools.idea.wizard.template.*
 val emaSetupFragmentTemplate
     get() = template {
         name = "EMA fragment architecture"
-        description =
-            "Creates a new EMA fragment feature with the following classes - ViewModel, Fragment, Navigator and State"
-        minApi = 21
+        description = "Creates a new EMA fragment feature with the following classes - ViewModel, Fragment, Navigator and State"
+        minApi = 23
         category = Category.Other // Check other categories
         formFactor = FormFactor.Mobile
         screens = listOf(
@@ -27,16 +27,9 @@ val emaSetupFragmentTemplate
 
         val featureName = stringParameter {
             name = "Feature Name"
-            constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
             default = ""
+            constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
             help = "The name of the feature that requires EMA views"
-        }
-
-        val layoutBinding = stringParameter {
-            name = "Layout binding for fragment"
-            constraints = listOf(Constraint.NONEMPTY)
-            suggest = { "${featureName.value}_fragment" }
-            help = "The binding layout generated class to represent the fragment view"
         }
 
         val hasNavigator = booleanParameter {
@@ -58,10 +51,28 @@ val emaSetupFragmentTemplate
             help = "Set true if the activity has toolbar support. False if is a normal activity"
         }
 
+        val layoutBinding = stringParameter {
+            name = "Layout binding for fragment"
+            default = ""
+            suggest = { "${featureName.value.lowercase()}_fragment" }
+            constraints = listOf(Constraint.NONEMPTY)
+            help = "The binding layout generated class to represent the fragment view"
+        }
+
+        val layoutContainerBinding = stringParameter {
+            name = "Layout binding for activity container"
+            default = ""
+            visible = { addActivity.value }
+            suggest = { "${featureName.value.lowercase()}_activity" }
+            constraints = listOf(Constraint.NONEMPTY)
+            help = "The binding layout generated class to represent the container activity view"
+        }
+
         val navigationActivityGraph = stringParameter {
             name = "Navigation graph for container activity"
+            default = ""
             constraints = listOf(Constraint.NONEMPTY)
-            suggest = { "${featureName.value}_graph" }
+            suggest = { "${featureName.value.lowercase()}_graph" }
             visible = { addActivity.value }
             help = "The activity navigation graph to define the destinations"
         }
@@ -71,16 +82,17 @@ val emaSetupFragmentTemplate
             TextFieldWidget(layoutBinding),
             CheckBoxWidget(hasNavigator),
             CheckBoxWidget(addActivity),
-            CheckBoxWidget(hasToolbar),
+            TextFieldWidget(layoutContainerBinding),
             TextFieldWidget(navigationActivityGraph),
-        )
+            CheckBoxWidget(hasToolbar)
+            )
 
         recipe = { data: TemplateData ->
             emaRecipeFragmentSetup(
                 moduleData = data as ModuleTemplateData,
-                packageName = data.packageName,
-                featureName = featureName.value,
+                featureName = featureName.value.capitalize(),
                 layoutBinding = layoutBinding.value,
+                layoutContainerBinding = layoutContainerBinding.value,
                 addActivityContainer = addActivity.value,
                 hasNavigator = hasNavigator.value,
                 navigationGraph = navigationActivityGraph.value,

@@ -1,15 +1,18 @@
 package com.github.carlosmateo89.ematemplate.templates
 
 import android.databinding.tool.ext.toCamelCase
-import org.jetbrains.kotlin.idea.gradleTooling.capitalize
 
 fun addViewFragment(
     packageName: String,
+    modulePackageName:String?,
     featureName: String,
     layoutBinding:String,
     hasNavigator: Boolean
 ): String {
-    val layoutBindingName = "${layoutBinding.toCamelCase().capitalize()}Binding"
+    val layoutBindingName = "${layoutBinding.toCamelCase().replaceFirstChar { it.uppercaseChar() }}Binding"
+    val rImports = modulePackageName?.let {
+         "import $it.databinding.$layoutBindingName"
+    }?:""
     val navigator =
         if (hasNavigator) "override val navigator: EmaNavigator<${featureName}Destination> = ${featureName}Navigator(" +
                 "this" +
@@ -26,6 +29,7 @@ import com.carmabs.ema.android.ui.EmaFragment
 import com.carmabs.ema.android.viewmodel.EmaAndroidViewModel
 import com.carmabs.ema.core.navigator.EmaNavigator
 $navigatorImport
+$rImports
 
 class ${featureName}Fragment :
     EmaFragment<${layoutBindingName},${featureName}State, ${featureName}ViewModel, $navigatorName>() {
@@ -38,10 +42,10 @@ class ${featureName}Fragment :
     }
 
     override fun provideAndroidViewModel(): EmaAndroidViewModel {
-        return injectDirect()
+        return ${featureName}AndroidViewModel(injectDirect())
     }
 
-    override fun ${layoutBindingName}.onNormal(data: ${featureName}State){
+    override fun ${layoutBindingName}.onStateNormal(data: ${featureName}State){
     
     }
 

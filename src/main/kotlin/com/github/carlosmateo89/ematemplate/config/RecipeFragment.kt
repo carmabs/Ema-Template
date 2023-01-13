@@ -5,8 +5,12 @@ import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.github.carlosmateo89.ematemplate.listeners.MyProjectManagerListener.Companion.projectInstance
 import com.github.carlosmateo89.ematemplate.templates.*
-import com.intellij.openapi.roots.ProjectRootManager
+import com.intellij.openapi.roots.ModuleRootManager
 import com.intellij.psi.PsiManager
+import org.jetbrains.android.dom.manifest.getPrimaryManifestXml
+import org.jetbrains.android.facet.AndroidFacet
+import org.jetbrains.kotlin.idea.util.projectStructure.allModules
+import org.jetbrains.kotlin.idea.util.sourceRoots
 
 /**
  * Created by Carlos Mateo Benito on 2022
@@ -19,9 +23,9 @@ import com.intellij.psi.PsiManager
  */
 fun RecipeExecutor.emaRecipeFragmentSetup(
     moduleData: ModuleTemplateData,
-    packageName: String,
     featureName: String,
     layoutBinding: String,
+    layoutContainerBinding: String,
     addActivityContainer: Boolean,
     isToolbarActivity: Boolean,
     navigationGraph: String,
@@ -29,38 +33,47 @@ fun RecipeExecutor.emaRecipeFragmentSetup(
 ) {
     val (projectData) = moduleData
     val project = projectInstance ?: return
+    val module = project.allModules().find { it.name == moduleData.name }!!
 
-    val virtualFiles = ProjectRootManager.getInstance(project).contentSourceRoots
-    val virtSrc = virtualFiles.first { it.path.contains("src") }
-    val virtRes = virtualFiles.first { it.path.contains("res") }
-    val virtLayout = virtualFiles.first { it.path.contains("layout") }
-    val virtNav = virtualFiles.first { it.path.contains("navigation") }
-    val directorySrc = PsiManager.getInstance(project).findDirectory(virtSrc)!!
+    val androidFacet = AndroidFacet.getInstance(module)!!
+    val packageName = moduleData.packageName
+    val modulePackageName = androidFacet.getPrimaryManifestXml()?.packageName
+
+
+    val virtualFiles = module.sourceRoots
+    val virtJavaKotlin = virtualFiles.firstOrNull { it.path.contains("src/main/java") }
+        ?: virtualFiles.first { it.path.contains("src/main/kotlin") }
+    val virtRes = virtualFiles.first { it.path.contains("src/main/res") }
+    val directorySrc = PsiManager.getInstance(project).findDirectory(virtJavaKotlin)!!
     val directoryRes = PsiManager.getInstance(project).findDirectory(virtRes)!!
-    val directoryLayout = PsiManager.getInstance(project).findDirectory(virtLayout)!!
-    val directoryNav = PsiManager.getInstance(project).findDirectory(virtNav)!!
+    xmlLayout.save(directoryRes, "layout", "${layoutBinding}.xml")
+
 
     addViewState(packageName, featureName)
         .save(directorySrc, packageName, "${featureName}State.kt")
 
-    addViewModel(packageName, featureName)
-        .save(directorySrc, packageName, "${featureName}EmaViewModel.kt")
+    addViewModel(packageName, featureName, hasNavigator)
+        .save(directorySrc, packageName, "${featureName}ViewModel.kt")
 
     addAndroidViewModel(packageName, featureName)
-        .save(directorySrc, packageName, "${featureName}EmaAndroidViewModel.kt")
+        .save(directorySrc, packageName, "${featureName}AndroidViewModel.kt")
 
-    addViewFragment(packageName, featureName, layoutBinding, hasNavigator)
+    addViewFragment(packageName, modulePackageName, featureName, layoutBinding, hasNavigator)
         .save(directorySrc, packageName, "${featureName}Fragment.kt")
-
-    xmlLayout.save(directoryLayout, packageName, "${layoutBinding}.xml")
 
 
     if (addActivityContainer) {
-        xmlNavigation.save(directoryNav, packageName, "${navigationGraph}.xml")
+        addActivityLayout(featureName, isToolbarActivity).save(
+            directoryRes,
+            "layout",
+            "${layoutContainerBinding}.xml"
+        )
+        addXmlNavigation(featureName,moduleData.packageName,true).save(directoryRes, "navigation", "${navigationGraph}.xml")
         addViewActivity(
             packageName,
+            modulePackageName,
             featureName,
-            layoutBinding,
+            layoutContainerBinding,
             navigationGraph,
             false,
             isToolbarActivity,
