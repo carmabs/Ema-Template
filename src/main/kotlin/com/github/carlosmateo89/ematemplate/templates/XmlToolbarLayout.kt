@@ -39,7 +39,7 @@ fun addActivityLayout(featureName: String, hasToolbar: Boolean): String {
         ""
 
     val fragmentCode = if(hasToolbar){
-        """<fragment
+        """<androidx.fragment.app.FragmentContainerView
             android:id="@+id/navHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
@@ -51,7 +51,7 @@ fun addActivityLayout(featureName: String, hasToolbar: Boolean): String {
             app:layout_constraintTop_toBottomOf="@id/abl${featureName.capitalize()}" />"""
     }
     else{
-        """<fragment
+        """<androidx.fragment.app.FragmentContainerView
             android:id="@+id/navHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
