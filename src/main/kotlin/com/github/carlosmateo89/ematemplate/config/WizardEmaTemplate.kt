@@ -13,5 +13,6 @@ import com.android.tools.idea.wizard.template.WizardTemplateProvider
  * @author <a href="mailto: cmateo.benito@atsistemas.com">Carlos Mateo Benito</a>
  */
 class WizardEmaTemplate : WizardTemplateProvider() {
-        override fun getTemplates(): List<Template> = listOf(emaSetupTemplate)
+    override fun getTemplates(): List<Template> =
+        listOf(emaSetupFragmentTemplate, emaSetupActivityTemplate)
 }

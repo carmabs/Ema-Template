@@ -7,7 +7,7 @@ fun addAndroidViewModel(
 
 import com.carmabs.ema.android.viewmodel.EmaAndroidViewModel
 
-class ${featureName}AndroidViewModel(viewModel:${featureName}ViewModel) :
-    EmaAndroidViewModel<${featureName}ViewModel>(viewModel)
+class ${featureName}AndroidViewModel(viewModel: ${featureName}ViewModel) :
+    EmaAndroidViewModel(viewModel)
 
 """
