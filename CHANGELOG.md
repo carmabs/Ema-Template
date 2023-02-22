@@ -4,4 +4,4 @@
 
 ## [Unreleased]
 ### Added
-- EMA 4.2.2 version
+- EMA 5.0.0 version
