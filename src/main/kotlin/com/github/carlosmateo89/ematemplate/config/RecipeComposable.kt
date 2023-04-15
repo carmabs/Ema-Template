@@ -5,10 +5,7 @@ import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.github.carlosmateo89.ematemplate.listeners.MyProjectManagerListener.Companion.projectInstance
 import com.github.carlosmateo89.ematemplate.templates.*
-import com.intellij.openapi.roots.ModuleRootManager
 import com.intellij.psi.PsiManager
-import org.jetbrains.android.dom.manifest.getPrimaryManifestXml
-import org.jetbrains.android.facet.AndroidFacet
 import org.jetbrains.kotlin.idea.util.projectStructure.allModules
 import org.jetbrains.kotlin.idea.util.sourceRoots
 
@@ -42,9 +39,22 @@ fun RecipeExecutor.emaRecipeComposableSetup(
 
     addViewState(packageName, featureName)
         .save(directorySrc, packageName, "${featureName}State.kt")
+    
+    if (hasActions) {
+        addActions(
+            packageName,
+            featureName
+        )
+            .save(directorySrc, packageName, "${featureName}ScreenActions.kt")
 
-    addViewModel(packageName, featureName, hasNavigator)
-        .save(directorySrc, packageName, "${featureName}ViewModel.kt")
+        addViewModelAction(packageName, featureName,hasNavigator)
+            .save(directorySrc, packageName, "${featureName}ViewModel.kt")
+
+    }else {
+        addViewModel(packageName, featureName, hasNavigator)
+            .save(directorySrc, packageName, "${featureName}ViewModel.kt")
+
+    }
 
     addAndroidViewModel(packageName, featureName)
         .save(directorySrc, packageName, "${featureName}AndroidViewModel.kt")
@@ -52,13 +62,6 @@ fun RecipeExecutor.emaRecipeComposableSetup(
     addComposableScreenContent(packageName, featureName,  hasActions)
         .save(directorySrc, packageName, "${featureName}ScreenContent.kt")
 
-    if (hasActions) {
-       addComposableScreenActions(
-            packageName,
-            featureName
-        )
-            .save(directorySrc, packageName, "${featureName}ScreenActions.kt")
-    }
 
     if (hasNavigator) {
         addComposableNavigator(packageName, featureName)

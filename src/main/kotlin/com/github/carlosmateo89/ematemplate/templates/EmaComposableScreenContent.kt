@@ -9,20 +9,21 @@ fun addComposableScreenContent(
     val imports = if(hasActions){
         ""
     }else{
-        "import com.carmabs.ema.android.compose.action.EmaComposableScreenActionsEmpty"
+        "import com.carmabs.ema.core.action.EmaActionEmpty"
     }
 
     val actions = if(hasActions){
-        "${featureName}ScreenActions"
+        "${featureName}Actions"
     }
     else{
-        "EmaComposableScreenActionsEmpty"
+        "EmaActionEmpty"
     }
-
     return """package $packageName
+
 
 import androidx.compose.runtime.Composable
 import com.carmabs.ema.android.compose.ui.EmaComposableScreenContent
+import com.carmabs.ema.core.action.EmaActionDispatcher
 $imports
 
 class ${featureName}ScreenContent :
@@ -31,7 +32,7 @@ class ${featureName}ScreenContent :
     @Composable
     override fun onStateNormal(
         state: ${featureName}State,
-        actions: ${featureName}ScreenActions
+        actions: EmaActionDispatcher<$actions>
         ){
     
     }
