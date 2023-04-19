@@ -8,13 +8,13 @@ fun addActivityNavigator(
 import android.app.Activity
 import androidx.annotation.IdRes
 import androidx.annotation.NavigationRes
-import com.carmabs.ema.android.navigation.EmaActivityNavControllerNavigator
+import com.bimbaylola.architecture_android.navigation.ArcActivityNavControllerNavigator
 
 class ${featureName}Navigator(
     activity: Activity,
     @IdRes navHostId: Int,
     @NavigationRes graphId: Int
-) : EmaActivityNavControllerNavigator<${featureName}Destination>(
+) : ArcActivityNavControllerNavigator<${featureName}Destination>(
     activity = activity,
     navHostId = navHostId,
     graphId = graphId

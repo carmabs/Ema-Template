@@ -45,7 +45,7 @@ fun RecipeExecutor.emaRecipeComposableSetup(
             packageName,
             featureName
         )
-            .save(directorySrc, packageName, "${featureName}ScreenActions.kt")
+            .save(directorySrc, packageName, "${featureName}Actions.kt")
 
         addViewModelAction(packageName, featureName,hasNavigator)
             .save(directorySrc, packageName, "${featureName}ViewModel.kt")

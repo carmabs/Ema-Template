@@ -1,4 +1,4 @@
-# EMA-Template
+# ARC-Template
 
 ![Build](https://github.com/carlosmateo89/EMA-Template/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
@@ -14,7 +14,7 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-This Plugin generates the EMA files to speed up your development.
+This Plugin generates the ARC files to speed up your development.
 
 <!-- Plugin description end -->
 

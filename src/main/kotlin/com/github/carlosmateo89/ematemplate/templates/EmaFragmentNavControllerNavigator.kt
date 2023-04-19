@@ -5,11 +5,11 @@ fun addFragmentNavigator(packageName: String,
 ) = """package $packageName
 
 import androidx.fragment.app.Fragment
-import com.carmabs.ema.android.navigation.EmaFragmentNavControllerNavigator
+import com.bimbaylola.architecture_android.navigation.ArcFragmentNavControllerNavigator
 
 class ${featureName}Navigator(
     fragment: Fragment
-) : EmaFragmentNavControllerNavigator<${featureName}Destination>(fragment) {
+) : ArcFragmentNavControllerNavigator<${featureName}Destination>(fragment) {
 
     override fun navigate(navigationTarget: ${featureName}Destination) {
         

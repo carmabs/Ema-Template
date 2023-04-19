@@ -4,8 +4,8 @@ fun addViewState(packageName: String,
                  featureName: String
 ) = """package $packageName
 
-import com.carmabs.ema.core.state.EmaDataState
+import com.bimbaylola.architecture_core.state.ArcDataState
 
-data class ${featureName}State(val defaultValue: Boolean = true): EmaDataState
+data class ${featureName}State(val defaultValue: Boolean = true): ArcDataState
 
 """

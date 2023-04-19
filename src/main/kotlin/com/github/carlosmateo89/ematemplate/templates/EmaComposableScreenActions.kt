@@ -6,12 +6,12 @@ fun addActions(
 ): String {
     return """package $packageName
 
-import com.carmabs.ema.core.action.EmaAction
+import com.bimbaylola.architecture_core.action.ArcAction
 
-interface ${featureName}Actions : EmaAction {
+sealed interface ${featureName}Actions : ArcAction {
 
-    ///Replace with yoour screen action. It can be an object or a data class if you need parameters
-    object SampleAction : ${featureName}Actions()
+    ///Replace with your screen action. It can be an object or a data class if you need parameters
+    object SampleAction : ${featureName}Actions
 }
 """
 }

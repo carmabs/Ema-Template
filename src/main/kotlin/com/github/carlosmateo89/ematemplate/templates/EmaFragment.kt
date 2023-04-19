@@ -14,25 +14,25 @@ fun addViewFragment(
          "import $it.databinding.$layoutBindingName"
     }?:""
     val navigator =
-        if (hasNavigator) "override val navigator: EmaNavigator<${featureName}Destination> = ${featureName}Navigator(" +
+        if (hasNavigator) "override val navigator: ArcNavigator<${featureName}Destination> = ${featureName}Navigator(" +
                 "this" +
-                ")" else "override val navigator: EmaNavigator<EmaEmptyDestination>? = null"
-    val navigatorName = if (hasNavigator) "${featureName}Destination" else "EmaEmptyDestination"
+                ")" else "override val navigator: ArcNavigator<ArcEmptyDestination>? = null"
+    val navigatorName = if (hasNavigator) "${featureName}Destination" else "ArcEmptyDestination"
     val navigatorImport =
-        if (hasNavigator) "" else "import com.carmabs.ema.core.navigator.EmaEmptyDestination"
+        if (hasNavigator) "" else "import com.bimbaylola.architecture_core.navigator.ArcEmptyDestination"
     return """package $packageName
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.carmabs.ema.android.di.injectDirect
-import com.carmabs.ema.android.ui.EmaFragment
-import com.carmabs.ema.android.viewmodel.EmaAndroidViewModel
-import com.carmabs.ema.core.navigator.EmaNavigator
+import com.bimbaylola.architecture_android.di.injectDirect
+import com.bimbaylola.architecture_android.ui.ArcFragment
+import com.bimbaylola.architecture_android.viewmodel.ArcAndroidViewModel
+import com.bimbaylola.architecture_core.navigator.ArcNavigator
 $navigatorImport
 $rImports
 
 class ${featureName}Fragment :
-    EmaFragment<${layoutBindingName},${featureName}State, ${featureName}ViewModel, $navigatorName>() {
+    ArcFragment<${layoutBindingName},${featureName}State, ${featureName}ViewModel, $navigatorName>() {
 
     override fun createViewBinding(
         inflater: LayoutInflater,
@@ -41,7 +41,7 @@ class ${featureName}Fragment :
         return ${layoutBindingName}.inflate(inflater,container,false)
     }
 
-    override fun provideAndroidViewModel(): EmaAndroidViewModel {
+    override fun provideAndroidViewModel(): ArcAndroidViewModel {
         return ${featureName}AndroidViewModel(injectDirect())
     }
 

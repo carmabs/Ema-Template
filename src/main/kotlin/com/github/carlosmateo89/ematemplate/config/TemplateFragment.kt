@@ -15,8 +15,8 @@ import org.jetbrains.kotlin.lombok.utils.capitalize
 
 val emaSetupFragmentTemplate
     get() = template {
-        name = "EMA fragment architecture"
-        description = "Creates a new EMA fragment feature with the following classes - ViewModel, Fragment, Navigator and State"
+        name = "ARC fragment architecture"
+        description = "Creates a new ARC fragment feature with the following classes - ViewModel, Fragment, Navigator and State"
         minApi = 23
         category = Category.Other // Check other categories
         formFactor = FormFactor.Mobile
@@ -29,7 +29,7 @@ val emaSetupFragmentTemplate
             name = "Feature Name"
             default = ""
             constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
-            help = "The name of the feature that requires EMA views"
+            help = "The name of the feature that requires ARC views"
         }
 
         val hasNavigator = booleanParameter {

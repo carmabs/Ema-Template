@@ -26,9 +26,9 @@ import org.jetbrains.kotlin.lombok.utils.capitalize
 
 val emaSetupActivityTemplate
     get() = template {
-        name = "EMA activity architecture"
+        name = "ARC activity architecture"
         description =
-            "Creates a new EMA activity feature with the following classes - ViewModel, Activity, Navigator and State"
+            "Creates a new ARC activity feature with the following classes - ViewModel, Activity, Navigator and State"
         minApi = 23
         category = Category.Other// Check other categories
         formFactor = FormFactor.Mobile
@@ -41,7 +41,7 @@ val emaSetupActivityTemplate
             name = "Feature Name"
             constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
             default = ""
-            help = "The name of the feature that requires EMA views"
+            help = "The name of the feature that requires ARC views"
         }
 
         val layoutBinding = stringParameter {

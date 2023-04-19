@@ -6,26 +6,30 @@ fun addViewModelAction(
     hasNavigation: Boolean
 ): String {
     val imports = if (hasNavigation) {
-        "import com.carmabs.ema.core.initializer.EmaInitializer\n" +
-                "import com.carmabs.ema.core.viewmodel.EmaViewModelAction"
+        "import com.bimbaylola.architecture_core.initializer.ArcInitializer\n" +
+                "import com.bimbaylola.presentation.base.BaseViewModel"
     } else {
-        "import com.carmabs.ema.core.initializer.EmaInitializer\n" +
-                "import com.carmabs.ema.core.navigator.EmaEmptyDestination\n" +
-                "import com.carmabs.ema.core.viewmodel.EmaViewModelAction"
+        "import com.bimbaylola.architecture_core.initializer.ArcInitializer\n" +
+                "import com.bimbaylola.architecture_core.navigator.ArcEmptyDestination\n" +
+                "import com.bimbaylola.presentation.base.BaseViewModel"
     }
     val navigation = if (hasNavigation) {
         "${featureName}Destination"
     } else {
-        "EmaEmptyDestination"
+        "ArcEmptyDestination"
     }
     return """package $packageName
 
 $imports
 
-class ${featureName}ViewModel: EmaViewModelAction<${featureName}Action,${featureName}State,$navigation>(){
+class ${featureName}ViewModel: BaseViewModelAction<${featureName}Actions,${featureName}State,$navigation>(){
 	
-	override suspend fun onCreateState(initializer: EmaInitializer?): ${featureName}State {
+	override suspend fun onCreateState(initializer: ArcInitializer?): ${featureName}State {
         return ${featureName}State()
+    }
+    
+    override fun onAction(action: ${featureName}Actions) {
+       
     }
    
 }

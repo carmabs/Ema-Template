@@ -15,8 +15,8 @@ import org.jetbrains.kotlin.lombok.utils.capitalize
 
 val emaSetupComposableTemplate
     get() = template {
-        name = "EMA composable architecture"
-        description = "Creates a new EMA composable feature with the following classes - ViewModel, ComposableScreen, ComposableScreenActions, Navigator and State"
+        name = "ARC composable architecture"
+        description = "Creates a new ARC composable feature with the following classes - ViewModel, ComposableScreen, ComposableScreenActions, Navigator and State"
         minApi = 23
         category = Category.Other // Check other categories
         formFactor = FormFactor.Mobile
@@ -29,7 +29,7 @@ val emaSetupComposableTemplate
             name = "Feature Name"
             default = ""
             constraints = listOf(Constraint.NONEMPTY, Constraint.UNIQUE)
-            help = "The name of the feature that requires EMA views"
+            help = "The name of the feature that requires ARC views"
         }
 
         val hasActions = booleanParameter {

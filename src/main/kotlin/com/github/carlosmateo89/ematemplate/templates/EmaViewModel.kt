@@ -6,25 +6,25 @@ fun addViewModel(
     hasNavigation: Boolean
 ): String {
     val imports = if (hasNavigation) {
-        "import com.carmabs.ema.core.initializer.EmaInitializer\n" +
-                "import com.carmabs.ema.core.viewmodel.EmaViewModel"
+        "import com.bimbaylola.architecture_core.initializer.ArcInitializer\n" +
+                "import com.bimbaylola.architecture_core.viewmodel.ArcViewModel"
     } else {
-        "import com.carmabs.ema.core.initializer.EmaInitializer\n" +
-                "import com.carmabs.ema.core.navigator.EmaEmptyDestination\n" +
-                "import com.carmabs.ema.core.viewmodel.EmaViewModel"
+        "import com.bimbaylola.architecture_core.initializer.ArcInitializer\n" +
+                "import com.bimbaylola.architecture_core.navigator.ArcEmptyDestination\n" +
+                "import com.bimbaylola.architecture_core.viewmodel.ArcViewModel"
     }
     val navigation = if (hasNavigation) {
         "${featureName}Destination"
     } else {
-        "EmaEmptyDestination"
+        "ArcEmptyDestination"
     }
     return """package $packageName
 
 $imports
 
-class ${featureName}ViewModel: EmaViewModel<${featureName}State,$navigation>(){
+class ${featureName}ViewModel: ArcViewModel<${featureName}State,$navigation>(){
 	
-	override suspend fun onCreateState(initializer: EmaInitializer?): ${featureName}State {
+	override suspend fun onCreateState(initializer: ArcInitializer?): ${featureName}State {
         return ${featureName}State()
     }
    

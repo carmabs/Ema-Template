@@ -23,46 +23,46 @@ fun addViewActivity(
 
     val navigationGraphName = "R.navigation.${navigationGraph}"
     val containerImports = if (isContainer) {
-        "import com.carmabs.ema.android.viewmodel.EmaAndroidEmptyViewModel\n" +
-                "import com.carmabs.ema.core.state.EmaEmptyState\n" +
-                "import com.carmabs.ema.core.viewmodel.EmaEmptyViewModel"
+        "import com.bimbaylola.architecture_android.viewmodel.ArcAndroidEmptyViewModel\n" +
+                "import com.bimbaylola.architecture_core.state.ArcEmptyState\n" +
+                "import com.bimbaylola.architecture_core.viewmodel.ArcEmptyViewModel"
     } else
-        "import com.carmabs.ema.android.di.injectDirect"
+        "import com.bimbaylola.architecture_android.di.injectDirect"
 
     val viewmodel = if (isContainer) {
-        "EmaEmptyViewModel"
+        "ArcEmptyViewModel"
     } else
         "${featureName}ViewModel"
 
     val androidViewModel = if (isContainer) {
-        "EmaAndroidEmptyViewModel()"
+        "ArcAndroidEmptyViewModel()"
     } else
         "${featureName}AndroidViewModel(injectDirect())"
 
     val state = if (isContainer) {
-        "EmaEmptyState"
+        "ArcEmptyState"
     } else
         "${featureName}State"
 
     val navigator =
-        if (hasNavigator) "override val navigator: EmaNavigator<${featureName}Destination> = ${featureName}Navigator(\n" +
+        if (hasNavigator) "override val navigator: ArcNavigator<${featureName}Destination> = ${featureName}Navigator(\n" +
                 "       this,\n" +
                 "       R.id.navHostFragment,\n" +
                 "       $navigationGraphName\n" +
-                "   )" else "override val navigator: EmaNavigator<EmaEmptyDestination> = EmaActivityNavControllerHost(\n" +
+                "   )" else "override val navigator: ArcNavigator<ArcEmptyDestination> = ArcActivityNavControllerHost(\n" +
                 "       this,\n" +
                 "       R.id.navHostFragment,\n" +
                 "       $navigationGraphName\n" +
                 "   )"
-    val navigatorName = if (hasNavigator) "${featureName}Destination" else "EmaEmptyDestination"
+    val navigatorName = if (hasNavigator) "${featureName}Destination" else "ArcEmptyDestination"
     val activityImports = (if (hasToolbar) "import androidx.appcompat.widget.Toolbar\n" +
-            "import com.carmabs.ema.android.ui.EmaToolbarActivity\n" +
+            "import com.bimbaylola.architecture_android.ui.ArcToolbarActivity\n" +
             "import com.google.android.material.appbar.AppBarLayout"
     else
-        "import com.carmabs.ema.android.ui.EmaActivity")
+        "import com.bimbaylola.architecture_android.ui.ArcActivity")
 
 
-    val activityToolbar = if (hasToolbar) "EmaToolbarActivity" else "EmaActivity"
+    val activityToolbar = if (hasToolbar) "ArcToolbarActivity" else "ArcActivity"
     val toolbar =
         if (hasToolbar) "\n    override fun ${layoutBindingName}.provideToolbar(): Toolbar {\n" +
                 "       return tb$featureName\n" +
@@ -72,15 +72,15 @@ fun addViewActivity(
                 "       return abl$featureName\n" +
                 "    }\n" else ""
     val navigatorImport =
-        if (hasNavigator) "" else "import com.carmabs.ema.android.navigation.EmaActivityNavControllerHost\n" +
-                "import com.carmabs.ema.core.navigator.EmaEmptyDestination"
+        if (hasNavigator) "" else "import com.bimbaylola.architecture_android.navigation.ArcActivityNavControllerHost\n" +
+                "import com.bimbaylola.architecture_core.navigator.ArcEmptyDestination"
     return """package $packageName
 
 import android.view.LayoutInflater
 $activityImports
 $containerImports
-import com.carmabs.ema.android.viewmodel.EmaAndroidViewModel
-import com.carmabs.ema.core.navigator.EmaNavigator
+import com.bimbaylola.architecture_android.viewmodel.ArcAndroidViewModel
+import com.bimbaylola.architecture_core.navigator.ArcNavigator
 $navigatorImport
 $rImports
 
@@ -91,7 +91,7 @@ class ${featureName}Activity :
         return ${layoutBindingName}.inflate(inflater)
     }
     $toolbar
-    override fun provideAndroidViewModel(): EmaAndroidViewModel {
+    override fun provideAndroidViewModel(): ArcAndroidViewModel {
         return $androidViewModel
     }
 

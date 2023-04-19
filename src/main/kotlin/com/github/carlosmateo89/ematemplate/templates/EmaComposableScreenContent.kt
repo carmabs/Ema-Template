@@ -9,34 +9,33 @@ fun addComposableScreenContent(
     val imports = if(hasActions){
         ""
     }else{
-        "import com.carmabs.ema.core.action.EmaActionEmpty"
+        "import com.bimbaylola.architecture_core.action.ArcActionEmpty"
     }
 
     val actions = if(hasActions){
         "${featureName}Actions"
     }
     else{
-        "EmaActionEmpty"
+        "ArcActionEmpty"
     }
     return """package $packageName
 
 
 import androidx.compose.runtime.Composable
-import com.carmabs.ema.android.compose.ui.EmaComposableScreenContent
-import com.carmabs.ema.core.action.EmaActionDispatcher
+import com.bimbaylola.presentation.base.BaseComposableScreenContent
+import com.bimbaylola.architecture_core.action.ArcActionDispatcher
 $imports
 
 class ${featureName}ScreenContent :
-    EmaComposableScreenContent<${featureName}State, ${actions}> {
+    BaseComposableScreenContent<${featureName}State, ${actions}>() {
 
     @Composable
-    override fun onStateNormal(
+    override fun onNormal(
         state: ${featureName}State,
-        actions: EmaActionDispatcher<$actions>
+        actions: ArcActionDispatcher<$actions>
         ){
     
     }
-
 }
 """
 }

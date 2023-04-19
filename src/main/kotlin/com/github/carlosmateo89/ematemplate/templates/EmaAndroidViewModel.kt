@@ -5,9 +5,9 @@ fun addAndroidViewModel(
         featureName: String
 ) = """package $packageName
 
-import com.carmabs.ema.android.viewmodel.EmaAndroidViewModel
+import com.bimbaylola.architecture_android.viewmodel.ArcAndroidViewModel
 
 class ${featureName}AndroidViewModel(viewModel: ${featureName}ViewModel) :
-    EmaAndroidViewModel(viewModel)
+    ArcAndroidViewModel(viewModel)
 
 """

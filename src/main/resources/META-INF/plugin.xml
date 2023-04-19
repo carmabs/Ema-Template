@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.github.carmabs.ematemplate</id>
-    <name>Ema-Template</name>
+    <name>Arc-Template</name>
     <vendor>Carmabs</vendor>
 
     <!-- Product and plugin compatibility requirements -->

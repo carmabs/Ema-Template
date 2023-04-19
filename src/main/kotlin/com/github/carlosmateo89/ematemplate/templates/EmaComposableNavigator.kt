@@ -9,13 +9,13 @@ fun addComposableNavigator(
 import androidx.activity.ComponentActivity
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import com.carmabs.ema.android.compose.navigation.EmaComposableNavigator
+import com.bimbaylola.architecture_compose.navigation.ArcComposableNavigator
 
 class ${featureName}Navigator(
     activity: ComponentActivity,
     navController: NavController,
     navBackStackEntry: NavBackStackEntry
-) : EmaComposableNavigator<${featureName}Destination>(
+) : ArcComposableNavigator<${featureName}Destination>(
     activity = activity,
     navController = navController,
     navBackStackEntry = navBackStackEntry
