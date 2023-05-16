@@ -56,7 +56,7 @@ fun RecipeExecutor.emaRecipeActivitySetup(
     addViewModel(packageName, featureName,hasNavigator)
         .save(directorySrc, packageName, "${featureName}ViewModel.kt")
 
-    addAndroidViewModel(packageName, featureName)
+    addAndroidViewModel(packageName, featureName,hasNavigator)
         .save(directorySrc, packageName, "${featureName}AndroidViewModel.kt")
 
     addViewActivity(
@@ -76,7 +76,7 @@ fun RecipeExecutor.emaRecipeActivitySetup(
         addActivityNavigator(packageName, featureName)
             .save(directorySrc, packageName, "${featureName}Navigator.kt")
         addDestination(packageName, featureName)
-            .save(directorySrc, packageName, "${featureName}Destination.kt")
+            .save(directorySrc, packageName, "${featureName}NavigationEvent.kt")
     }
 
 

@@ -14,5 +14,5 @@ import com.android.tools.idea.wizard.template.WizardTemplateProvider
  */
 class WizardEmaTemplate : WizardTemplateProvider() {
     override fun getTemplates(): List<Template> =
-        listOf(emaSetupComposableTemplate)//emaSetupFragmentTemplate, emaSetupActivityTemplate)
+        listOf(emaSetupComposableTemplate) //emaSetupUseCaseTemplate, emaSetupFragmentTemplate, emaSetupActivityTemplate)
 }

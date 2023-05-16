@@ -23,7 +23,7 @@ fun addComposableScreenContent(
 
 import androidx.compose.runtime.Composable
 import com.bimbaylola.presentation.base.BaseComposableScreenContent
-import com.bimbaylola.architecture_core.action.ArcActionDispatcher
+import com.bimbaylola.architecture_compose.action.ArcImmutableActionDispatcher
 $imports
 
 class ${featureName}ScreenContent :
@@ -32,7 +32,7 @@ class ${featureName}ScreenContent :
     @Composable
     override fun onNormal(
         state: ${featureName}State,
-        actions: ArcActionDispatcher<$actions>
+        actions: ArcImmutableActionDispatcher<$actions>
         ){
     
     }

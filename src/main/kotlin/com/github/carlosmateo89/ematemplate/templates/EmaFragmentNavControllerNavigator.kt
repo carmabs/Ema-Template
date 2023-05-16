@@ -9,9 +9,9 @@ import com.bimbaylola.architecture_android.navigation.ArcFragmentNavControllerNa
 
 class ${featureName}Navigator(
     fragment: Fragment
-) : ArcFragmentNavControllerNavigator<${featureName}Destination>(fragment) {
+) : ArcFragmentNavControllerNavigator<${featureName}NavigationEvent>(fragment) {
 
-    override fun navigate(navigationTarget: ${featureName}Destination) {
+    override fun navigate(navigationTarget: ${featureName}NavigationEvent) {
         
     }
 }

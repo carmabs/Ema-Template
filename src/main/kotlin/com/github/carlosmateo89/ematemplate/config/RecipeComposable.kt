@@ -21,8 +21,9 @@ import org.jetbrains.kotlin.idea.util.sourceRoots
 fun RecipeExecutor.emaRecipeComposableSetup(
     moduleData: ModuleTemplateData,
     featureName: String,
+    hasNavigationEvents: Boolean,
     hasNavigator: Boolean,
-    hasActions:Boolean
+    hasActions: Boolean
 ) {
     val (projectData) = moduleData
     val project = projectInstance ?: return
@@ -39,7 +40,7 @@ fun RecipeExecutor.emaRecipeComposableSetup(
 
     addViewState(packageName, featureName)
         .save(directorySrc, packageName, "${featureName}State.kt")
-    
+
     if (hasActions) {
         addActions(
             packageName,
@@ -47,28 +48,28 @@ fun RecipeExecutor.emaRecipeComposableSetup(
         )
             .save(directorySrc, packageName, "${featureName}Actions.kt")
 
-        addViewModelAction(packageName, featureName,hasNavigator)
+        addViewModelAction(packageName, featureName, hasNavigationEvents)
             .save(directorySrc, packageName, "${featureName}ViewModel.kt")
 
-    }else {
-        addViewModel(packageName, featureName, hasNavigator)
+    } else {
+        addViewModel(packageName, featureName, hasNavigationEvents)
             .save(directorySrc, packageName, "${featureName}ViewModel.kt")
 
     }
 
-    addAndroidViewModel(packageName, featureName)
+    addAndroidViewModel(packageName, featureName, hasNavigationEvents)
         .save(directorySrc, packageName, "${featureName}AndroidViewModel.kt")
 
-    addComposableScreenContent(packageName, featureName,  hasActions)
+    addComposableScreenContent(packageName, featureName, hasActions)
         .save(directorySrc, packageName, "${featureName}ScreenContent.kt")
 
 
     if (hasNavigator) {
         addComposableNavigator(packageName, featureName)
             .save(directorySrc, packageName, "${featureName}Navigator.kt")
-        addDestination(packageName, featureName)
-            .save(directorySrc, packageName, "${featureName}Destination.kt")
     }
-
-
+    if (hasNavigationEvents) {
+        addDestination(packageName, featureName)
+            .save(directorySrc, packageName, "${featureName}NavigationEvent.kt")
+    }
 }

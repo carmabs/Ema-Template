@@ -4,4 +4,4 @@
 
 ## [Unreleased]
 ### Added
-- ARC 5.0.0 version
+- ARC 6.0.0 version

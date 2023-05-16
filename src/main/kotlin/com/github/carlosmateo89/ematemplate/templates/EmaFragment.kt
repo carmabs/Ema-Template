@@ -14,12 +14,12 @@ fun addViewFragment(
          "import $it.databinding.$layoutBindingName"
     }?:""
     val navigator =
-        if (hasNavigator) "override val navigator: ArcNavigator<${featureName}Destination> = ${featureName}Navigator(" +
+        if (hasNavigator) "override val navigator: ArcNavigator<${featureName}NavigationEvent> = ${featureName}Navigator(" +
                 "this" +
-                ")" else "override val navigator: ArcNavigator<ArcEmptyDestination>? = null"
-    val navigatorName = if (hasNavigator) "${featureName}Destination" else "ArcEmptyDestination"
+                ")" else "override val navigator: ArcNavigator<ArcEmptyNavigationEvent>? = null"
+    val navigatorName = if (hasNavigator) "${featureName}Destination" else "ArcEmptyNavigationEvent"
     val navigatorImport =
-        if (hasNavigator) "" else "import com.bimbaylola.architecture_core.navigator.ArcEmptyDestination"
+        if (hasNavigator) "" else "import com.bimbaylola.architecture_core.navigator.ArcEmptyNavigationEvent"
     return """package $packageName
 
 import android.view.LayoutInflater

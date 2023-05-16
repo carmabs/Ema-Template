@@ -10,22 +10,24 @@ fun addViewModel(
                 "import com.bimbaylola.architecture_core.viewmodel.ArcViewModel"
     } else {
         "import com.bimbaylola.architecture_core.initializer.ArcInitializer\n" +
-                "import com.bimbaylola.architecture_core.navigator.ArcEmptyDestination\n" +
+                "import com.bimbaylola.architecture_core.navigator.ArcEmptyNavigationEvent\n" +
                 "import com.bimbaylola.architecture_core.viewmodel.ArcViewModel"
     }
     val navigation = if (hasNavigation) {
-        "${featureName}Destination"
+        "${featureName}NavigationEvent"
     } else {
-        "ArcEmptyDestination"
+        "ArcEmptyNavigationEvent"
     }
     return """package $packageName
 
 $imports
 
-class ${featureName}ViewModel: ArcViewModel<${featureName}State,$navigation>(){
+class ${featureName}ViewModel(
+    initialState: ${featureName}State
+): ArcViewModel<${featureName}State,$navigation>(initialState){
 	
-	override suspend fun onCreateState(initializer: ArcInitializer?): ${featureName}State {
-        return ${featureName}State()
+	override fun onStateCreated(initializer: ArcInitializer?) {
+   
     }
    
 }

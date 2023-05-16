@@ -14,18 +14,20 @@ fun addViewModelAction(
                 "import com.bimbaylola.presentation.base.BaseViewModel"
     }
     val navigation = if (hasNavigation) {
-        "${featureName}Destination"
+        "${featureName}NavigationEvent"
     } else {
-        "ArcEmptyDestination"
+        "ArcEmptyNavigationEvent"
     }
     return """package $packageName
 
 $imports
 
-class ${featureName}ViewModel: BaseViewModelAction<${featureName}Actions,${featureName}State,$navigation>(){
+class ${featureName}ViewModel(
+    initialState: ${featureName}State
+): BaseViewModel<${featureName}Actions, ${featureName}State, $navigation>(initialState){
 	
-	override suspend fun onCreateState(initializer: ArcInitializer?): ${featureName}State {
-        return ${featureName}State()
+	override fun onStateCreated(initializer: ArcInitializer?) {
+        
     }
     
     override fun onAction(action: ${featureName}Actions) {

@@ -6,6 +6,15 @@ fun addViewState(packageName: String,
 
 import com.bimbaylola.architecture_core.state.ArcDataState
 
-data class ${featureName}State(val defaultValue: Boolean = true): ArcDataState
+data class ${featureName}State(
+    //Replace sampleValue with your state values
+    val sampleValue: Boolean
+): ArcDataState{
+
+    companion object {
+        val DEFAULT = ${featureName}State(sampleValue = true)
+    }
+
+}
 
 """
