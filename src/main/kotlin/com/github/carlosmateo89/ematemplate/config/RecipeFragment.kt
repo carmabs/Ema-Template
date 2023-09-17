@@ -54,7 +54,7 @@ fun RecipeExecutor.emaRecipeFragmentSetup(
     addViewModel(packageName, featureName, hasNavigator)
         .save(directorySrc, packageName, "${featureName}ViewModel.kt")
 
-    addAndroidViewModel(packageName, featureName)
+    addAndroidViewModel(packageName, featureName,hasNavigator)
         .save(directorySrc, packageName, "${featureName}AndroidViewModel.kt")
 
     addViewFragment(packageName, modulePackageName, featureName, layoutBinding, hasNavigator)
@@ -85,7 +85,7 @@ fun RecipeExecutor.emaRecipeFragmentSetup(
         addFragmentNavigator(packageName, featureName)
             .save(directorySrc, packageName, "${featureName}Navigator.kt")
         addDestination(packageName, featureName)
-            .save(directorySrc, packageName, "${featureName}Destination.kt")
+            .save(directorySrc, packageName, "${featureName}NavigationEvent.kt")
     }
 
 

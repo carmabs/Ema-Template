@@ -38,9 +38,15 @@ val emaSetupComposableTemplate
             help = "Set true to bind composable actions for screen. False if screen has no composable actions"
         }
 
+        val hasNavigationEvents = booleanParameter {
+            name = "Create navigation events"
+            default = true
+            help = "Set true to create navigation events, false otherwise."
+        }
+
         val hasNavigator = booleanParameter {
             name = "Create Navigator"
-            default = true
+            default = false
             help = "Set true to use a defined ema navigator. False if screen has no navigation"
         }
 
@@ -48,6 +54,7 @@ val emaSetupComposableTemplate
         widgets(
             TextFieldWidget(featureName),
             CheckBoxWidget(hasActions),
+            CheckBoxWidget(hasNavigationEvents),
             CheckBoxWidget(hasNavigator),
             )
 
@@ -56,6 +63,7 @@ val emaSetupComposableTemplate
                 moduleData = data as ModuleTemplateData,
                 featureName = featureName.value.capitalize(),
                 hasNavigator = hasNavigator.value,
+                hasNavigationEvents = hasNavigationEvents.value,
                 hasActions = hasActions.value
             )
         }

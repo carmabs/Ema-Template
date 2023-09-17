@@ -14,12 +14,12 @@ fun addViewFragment(
          "import $it.databinding.$layoutBindingName"
     }?:""
     val navigator =
-        if (hasNavigator) "override val navigator: EmaNavigator<${featureName}Destination> = ${featureName}Navigator(" +
+        if (hasNavigator) "override val navigator: EmaNavigator<${featureName}NavigationEvent> = ${featureName}Navigator(" +
                 "this" +
-                ")" else "override val navigator: EmaNavigator<EmaEmptyDestination>? = null"
-    val navigatorName = if (hasNavigator) "${featureName}Destination" else "EmaEmptyDestination"
+                ")" else "override val navigator: EmaNavigator<EmaEmptyNavigationEvent>? = null"
+    val navigatorName = if (hasNavigator) "${featureName}NavigationEvent" else "EmaEmptyNavigationEvent"
     val navigatorImport =
-        if (hasNavigator) "" else "import com.carmabs.ema.core.navigator.EmaEmptyDestination"
+        if (hasNavigator) "" else "import com.carmabs.ema.core.navigator.EmaEmptyNavigationEvent"
     return """package $packageName
 
 import android.view.LayoutInflater

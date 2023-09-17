@@ -14,13 +14,13 @@ class ${featureName}Navigator(
     activity: Activity,
     @IdRes navHostId: Int,
     @NavigationRes graphId: Int
-) : EmaActivityNavControllerNavigator<${featureName}Destination>(
+) : EmaActivityNavControllerNavigator<${featureName}NavigationEvent>(
     activity = activity,
     navHostId = navHostId,
     graphId = graphId
 ) {
 
-    override fun navigate(navigationTarget: ${featureName}Destination){
+    override fun navigate(navigationTarget: ${featureName}NavigationEvent){
     
     }
 }

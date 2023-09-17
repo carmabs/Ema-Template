@@ -4,9 +4,14 @@ package com.github.carlosmateo89.ematemplate.config
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.github.carlosmateo89.ematemplate.listeners.MyProjectManagerListener.Companion.projectInstance
-import com.github.carlosmateo89.ematemplate.templates.*
-import com.intellij.openapi.roots.ModuleRootManager
-import com.intellij.openapi.roots.ProjectRootManager
+import com.github.carlosmateo89.ematemplate.templates.addActivityLayout
+import com.github.carlosmateo89.ematemplate.templates.addActivityNavigator
+import com.github.carlosmateo89.ematemplate.templates.addAndroidViewModel
+import com.github.carlosmateo89.ematemplate.templates.addDestination
+import com.github.carlosmateo89.ematemplate.templates.addViewActivity
+import com.github.carlosmateo89.ematemplate.templates.addViewModel
+import com.github.carlosmateo89.ematemplate.templates.addViewState
+import com.github.carlosmateo89.ematemplate.templates.addXmlNavigation
 import com.intellij.psi.PsiManager
 import org.jetbrains.android.dom.manifest.getPrimaryManifestXml
 import org.jetbrains.android.facet.AndroidFacet
@@ -47,16 +52,20 @@ fun RecipeExecutor.emaRecipeActivitySetup(
     val directoryRes = PsiManager.getInstance(project).findDirectory(virtRes)!!
 
     addActivityLayout(featureName, hasToolbar).save(directoryRes, "layout", "${layoutBinding}.xml")
-    addXmlNavigation(featureName,moduleData.packageName,false).save(directoryRes, "navigation", "${navigationGraph}.xml")
+    addXmlNavigation(featureName, moduleData.packageName, false).save(
+        directoryRes,
+        "navigation",
+        "${navigationGraph}.xml"
+    )
 
 
     addViewState(packageName, featureName)
         .save(directorySrc, packageName, "${featureName}State.kt")
 
-    addViewModel(packageName, featureName,hasNavigator)
+    addViewModel(packageName, featureName, hasNavigator)
         .save(directorySrc, packageName, "${featureName}ViewModel.kt")
 
-    addAndroidViewModel(packageName, featureName)
+    addAndroidViewModel(packageName, featureName, hasNavigator)
         .save(directorySrc, packageName, "${featureName}AndroidViewModel.kt")
 
     addViewActivity(
@@ -76,7 +85,7 @@ fun RecipeExecutor.emaRecipeActivitySetup(
         addActivityNavigator(packageName, featureName)
             .save(directorySrc, packageName, "${featureName}Navigator.kt")
         addDestination(packageName, featureName)
-            .save(directorySrc, packageName, "${featureName}Destination.kt")
+            .save(directorySrc, packageName, "${featureName}NavigationEvent.kt")
     }
 
 

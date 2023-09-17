@@ -22,8 +22,8 @@ fun addComposableScreenContent(
 
 
 import androidx.compose.runtime.Composable
-import com.carmabs.ema.android.compose.ui.EmaComposableScreenContent
-import com.carmabs.ema.core.action.EmaActionDispatcher
+import com.carmabs.ema.compose.ui.EmaComposableScreenContent
+import com.carmabs.ema.compose.action.EmaImmutableActionDispatcher
 $imports
 
 class ${featureName}ScreenContent :
@@ -32,8 +32,8 @@ class ${featureName}ScreenContent :
     @Composable
     override fun onStateNormal(
         state: ${featureName}State,
-        actions: EmaActionDispatcher<$actions>
-        ){
+        actions: EmaImmutableActionDispatcher<$actions>
+    ) {
     
     }
 

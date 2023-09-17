@@ -21,6 +21,7 @@ import org.jetbrains.kotlin.idea.util.sourceRoots
 fun RecipeExecutor.emaRecipeComposableSetup(
     moduleData: ModuleTemplateData,
     featureName: String,
+    hasNavigationEvents:Boolean,
     hasNavigator: Boolean,
     hasActions:Boolean
 ) {
@@ -45,18 +46,18 @@ fun RecipeExecutor.emaRecipeComposableSetup(
             packageName,
             featureName
         )
-            .save(directorySrc, packageName, "${featureName}ScreenActions.kt")
+            .save(directorySrc, packageName, "${featureName}Actions.kt")
 
-        addViewModelAction(packageName, featureName,hasNavigator)
+        addViewModelAction(packageName, featureName,hasNavigationEvents)
             .save(directorySrc, packageName, "${featureName}ViewModel.kt")
 
     }else {
-        addViewModel(packageName, featureName, hasNavigator)
+        addViewModel(packageName, featureName, hasNavigationEvents)
             .save(directorySrc, packageName, "${featureName}ViewModel.kt")
 
     }
 
-    addAndroidViewModel(packageName, featureName)
+    addAndroidViewModel(packageName, featureName,hasNavigationEvents)
         .save(directorySrc, packageName, "${featureName}AndroidViewModel.kt")
 
     addComposableScreenContent(packageName, featureName,  hasActions)
@@ -66,8 +67,11 @@ fun RecipeExecutor.emaRecipeComposableSetup(
     if (hasNavigator) {
         addComposableNavigator(packageName, featureName)
             .save(directorySrc, packageName, "${featureName}Navigator.kt")
+    }
+
+    if(hasNavigationEvents){
         addDestination(packageName, featureName)
-            .save(directorySrc, packageName, "${featureName}Destination.kt")
+            .save(directorySrc, packageName, "${featureName}NavigationEvent.kt")
     }
 
 

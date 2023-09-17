@@ -10,22 +10,24 @@ fun addViewModel(
                 "import com.carmabs.ema.core.viewmodel.EmaViewModel"
     } else {
         "import com.carmabs.ema.core.initializer.EmaInitializer\n" +
-                "import com.carmabs.ema.core.navigator.EmaEmptyDestination\n" +
+                "import com.carmabs.ema.core.navigator.EmaEmptyNavigationEvent\n" +
                 "import com.carmabs.ema.core.viewmodel.EmaViewModel"
     }
     val navigation = if (hasNavigation) {
-        "${featureName}Destination"
+        "${featureName}NavigationEvent"
     } else {
-        "EmaEmptyDestination"
+        "EmaEmptyNavigationEvent"
     }
     return """package $packageName
 
 $imports
 
-class ${featureName}ViewModel: EmaViewModel<${featureName}State,$navigation>(){
+class ${featureName}ViewModel(
+    initialState: ${featureName}State
+): EmaViewModel<${featureName}State,$navigation>(initialState){
 	
-	override suspend fun onCreateState(initializer: EmaInitializer?): ${featureName}State {
-        return ${featureName}State()
+	override fun onStateCreated(initializer: EmaInitializer?) {
+        
     }
    
 }

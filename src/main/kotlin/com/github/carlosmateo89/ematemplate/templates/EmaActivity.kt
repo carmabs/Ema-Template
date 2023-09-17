@@ -45,16 +45,16 @@ fun addViewActivity(
         "${featureName}State"
 
     val navigator =
-        if (hasNavigator) "override val navigator: EmaNavigator<${featureName}Destination> = ${featureName}Navigator(\n" +
+        if (hasNavigator) "override val navigator: EmaNavigator<${featureName}NavigationEvent> = ${featureName}Navigator(\n" +
                 "       this,\n" +
                 "       R.id.navHostFragment,\n" +
                 "       $navigationGraphName\n" +
-                "   )" else "override val navigator: EmaNavigator<EmaEmptyDestination> = EmaActivityNavControllerHost(\n" +
+                "   )" else "override val navigator: EmaNavigator<EmaEmptyNavigationEvent> = EmaActivityNavControllerHost(\n" +
                 "       this,\n" +
                 "       R.id.navHostFragment,\n" +
                 "       $navigationGraphName\n" +
                 "   )"
-    val navigatorName = if (hasNavigator) "${featureName}Destination" else "EmaEmptyDestination"
+    val navigatorName = if (hasNavigator) "${featureName}NavigationEvent" else "EmaEmptyNavigationEvent"
     val activityImports = (if (hasToolbar) "import androidx.appcompat.widget.Toolbar\n" +
             "import com.carmabs.ema.android.ui.EmaToolbarActivity\n" +
             "import com.google.android.material.appbar.AppBarLayout"
@@ -73,7 +73,7 @@ fun addViewActivity(
                 "    }\n" else ""
     val navigatorImport =
         if (hasNavigator) "" else "import com.carmabs.ema.android.navigation.EmaActivityNavControllerHost\n" +
-                "import com.carmabs.ema.core.navigator.EmaEmptyDestination"
+                "import com.carmabs.ema.core.navigator.EmaEmptyNavigationEvent"
     return """package $packageName
 
 import android.view.LayoutInflater

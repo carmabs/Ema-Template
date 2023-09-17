@@ -6,6 +6,15 @@ fun addViewState(packageName: String,
 
 import com.carmabs.ema.core.state.EmaDataState
 
-data class ${featureName}State(val defaultValue: Boolean = true): EmaDataState
+data class ${featureName}State(
+    //Replace sampleValue with your state values
+    val sampleValue: Boolean
+): EmaDataState{
+
+    companion object {
+        val DEFAULT = ${featureName}State(sampleValue = true)
+    }
+    
+}
 
 """

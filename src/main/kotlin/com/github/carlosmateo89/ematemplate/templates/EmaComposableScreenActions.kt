@@ -8,10 +8,10 @@ fun addActions(
 
 import com.carmabs.ema.core.action.EmaAction
 
-interface ${featureName}Actions : EmaAction {
+sealed interface ${featureName}Actions : EmaAction {
 
-    ///Replace with yoour screen action. It can be an object or a data class if you need parameters
-    object SampleAction : ${featureName}Actions()
+    ///Replace with your screen action. It can be an object or a data class if you need parameters. Ex
+    ///object SampleAction : ${featureName}Actions
 }
 """
 }

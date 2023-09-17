@@ -9,9 +9,9 @@ import com.carmabs.ema.android.navigation.EmaFragmentNavControllerNavigator
 
 class ${featureName}Navigator(
     fragment: Fragment
-) : EmaFragmentNavControllerNavigator<${featureName}Destination>(fragment) {
+) : EmaFragmentNavControllerNavigator<${featureName}NavigationEvent>(fragment) {
 
-    override fun navigate(navigationTarget: ${featureName}Destination) {
+    override fun navigate(navigationTarget: ${featureName}NavigationEvent) {
         
     }
 }
