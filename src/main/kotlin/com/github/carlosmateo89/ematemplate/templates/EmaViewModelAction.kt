@@ -33,7 +33,9 @@ class ${featureName}ViewModel(
     }
     
     override fun onAction(action: ${featureName}Actions) {
-       
+       when(action){
+           
+       }
     }
       
 }
