@@ -24,6 +24,8 @@ fun addComposableScreenContent(
 import androidx.compose.runtime.Composable
 import com.carmabs.ema.compose.ui.EmaComposableScreenContent
 import com.carmabs.ema.compose.action.EmaImmutableActionDispatcher
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
 $imports
 
 class ${featureName}ScreenContent :
@@ -35,6 +37,15 @@ class ${featureName}ScreenContent :
         actions: EmaImmutableActionDispatcher<$actions>
     ) {
     
+    }
+    
+    @Preview(showBackground = true, device = Devices.DEFAULT)
+    @Composable
+    private fun Preview${featureName}ScreenContent {
+            onStateNormal(
+                state = ${featureName}State.DEFAULT,
+                actions = EmaImmutableActionDispatcherEmpty()
+            )
     }
 
 }
