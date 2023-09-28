@@ -1,7 +1,7 @@
 package com.github.carlosmateo89.ematemplate.templates
 
-fun addDestination(packageName: String,
-                 featureName: String
+fun addNavigationEvent(packageName: String,
+                       featureName: String
 ) = """package $packageName
 
 import com.carmabs.ema.core.navigator.EmaNavigationEvent

@@ -24,7 +24,7 @@ $imports
 
 class ${featureName}ViewModel(
     initialState: ${featureName}State
-): EmaViewModelAction<${featureName}State, $navigation, ${featureName}Actions>(
+): EmaViewModelAction<${featureName}State, $navigation, ${featureName}Action>(
     initialState
 ) {
 	
@@ -32,10 +32,12 @@ class ${featureName}ViewModel(
         
     }
     
-    override fun onAction(action: ${featureName}Actions) {
+    override fun onViewAction(action: ${featureName}Action) {
+       /*
        when(action){
            
        }
+       */
     }
       
 }

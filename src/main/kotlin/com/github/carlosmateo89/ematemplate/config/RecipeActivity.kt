@@ -7,7 +7,7 @@ import com.github.carlosmateo89.ematemplate.listeners.MyProjectManagerListener.C
 import com.github.carlosmateo89.ematemplate.templates.addActivityLayout
 import com.github.carlosmateo89.ematemplate.templates.addActivityNavigator
 import com.github.carlosmateo89.ematemplate.templates.addAndroidViewModel
-import com.github.carlosmateo89.ematemplate.templates.addDestination
+import com.github.carlosmateo89.ematemplate.templates.addNavigationEvent
 import com.github.carlosmateo89.ematemplate.templates.addViewActivity
 import com.github.carlosmateo89.ematemplate.templates.addViewModel
 import com.github.carlosmateo89.ematemplate.templates.addViewState
@@ -84,7 +84,7 @@ fun RecipeExecutor.emaRecipeActivitySetup(
     if (hasNavigator) {
         addActivityNavigator(packageName, featureName)
             .save(directorySrc, packageName, "${featureName}Navigator.kt")
-        addDestination(packageName, featureName)
+        addNavigationEvent(packageName, featureName)
             .save(directorySrc, packageName, "${featureName}NavigationEvent.kt")
     }
 

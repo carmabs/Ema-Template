@@ -84,7 +84,7 @@ fun RecipeExecutor.emaRecipeFragmentSetup(
     if (hasNavigator) {
         addFragmentNavigator(packageName, featureName)
             .save(directorySrc, packageName, "${featureName}Navigator.kt")
-        addDestination(packageName, featureName)
+        addNavigationEvent(packageName, featureName)
             .save(directorySrc, packageName, "${featureName}NavigationEvent.kt")
     }
 

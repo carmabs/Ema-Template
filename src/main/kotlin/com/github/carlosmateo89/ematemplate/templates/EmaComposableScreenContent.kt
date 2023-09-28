@@ -3,19 +3,18 @@ package com.github.carlosmateo89.ematemplate.templates
 fun addComposableScreenContent(
     packageName: String,
     featureName: String,
-    hasActions:Boolean
+    hasActions: Boolean
 ): String {
 
-    val imports = if(hasActions){
+    val imports = if (hasActions) {
         ""
-    }else{
+    } else {
         "import com.carmabs.ema.core.action.EmaActionEmpty"
     }
 
-    val actions = if(hasActions){
-        "${featureName}Actions"
-    }
-    else{
+    val actions = if (hasActions) {
+        "${featureName}Action"
+    } else {
         "EmaActionEmpty"
     }
     return """package $packageName
@@ -24,6 +23,7 @@ fun addComposableScreenContent(
 import androidx.compose.runtime.Composable
 import com.carmabs.ema.compose.ui.EmaComposableScreenContent
 import com.carmabs.ema.compose.action.EmaImmutableActionDispatcher
+import com.carmabs.ema.compose.action.EmaImmutableActionDispatcherEmpty
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 $imports
@@ -39,14 +39,26 @@ class ${featureName}ScreenContent :
     
     }
     
+    
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //region Previews for $featureName
+    
     @Preview(showBackground = true, device = Devices.DEFAULT)
     @Composable
-    private fun Preview${featureName}ScreenContent {
-            onStateNormal(
-                state = ${featureName}State.DEFAULT,
-                actions = EmaImmutableActionDispatcherEmpty()
-            )
+    private fun Preview${featureName}ScreenContent() {
+        onStateNormal(
+            state = ${featureName}State.DEFAULT,
+            actions = EmaImmutableActionDispatcherEmpty()
+        )
     }
+    
+    //endregion
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 }
 """
