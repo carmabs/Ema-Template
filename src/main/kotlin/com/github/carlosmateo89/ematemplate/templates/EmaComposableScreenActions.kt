@@ -8,10 +8,10 @@ fun addActions(
 
 import com.bimbaylola.architecture_core.action.ArcAction
 
-sealed interface ${featureName}Actions : ArcAction {
+sealed interface ${featureName}Action : ArcAction {
 
     ///Replace with your screen action. It can be an object or a data class if you need parameters. Ex
-    ///object SampleAction : ${featureName}Actions
+    ///object SampleAction : ${featureName}Action
 }
 """
 }

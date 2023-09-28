@@ -13,7 +13,7 @@ fun addComposableScreenContent(
     }
 
     val actions = if(hasActions){
-        "${featureName}Actions"
+        "${featureName}Action"
     }
     else{
         "ArcActionEmpty"
@@ -24,6 +24,9 @@ fun addComposableScreenContent(
 import androidx.compose.runtime.Composable
 import com.bimbaylola.presentation.base.BaseComposableScreenContent
 import com.bimbaylola.architecture_compose.action.ArcImmutableActionDispatcher
+import com.bimbaylola.architecture_compose.action.ArcImmutableActionDispatcherEmpty
+import com.bimbaylola.domainandroid.theme.Bimbaylola2020droidTheme
+import com.bimbaylola.domainandroid.preview.PreviewDevices
 $imports
 
 class ${featureName}ScreenContent :
@@ -36,6 +39,26 @@ class ${featureName}ScreenContent :
         ){
     
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //region Previews for $featureName
+    
+    @PreviewDevices
+    @Composable
+    private fun Preview${featureName}ScreenContent() {
+        Bimbaylola2020droidTheme {
+            onStateNormal(
+                state = ${featureName}State.DEFAULT,
+                actions = ArcImmutableActionDispatcherEmpty()
+            )
+        }
+    }
+    
+    //endregion
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
 """
 }

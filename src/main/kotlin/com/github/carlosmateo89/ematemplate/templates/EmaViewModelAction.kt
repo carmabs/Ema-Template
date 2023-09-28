@@ -24,14 +24,18 @@ $imports
 
 class ${featureName}ViewModel(
     initialState: ${featureName}State
-): BaseViewModel<${featureName}Actions, ${featureName}State, $navigation>(initialState){
+): BaseViewModel<${featureName}Action, ${featureName}State, $navigation>(initialState){
 	
 	override fun onStateCreated(initializer: ArcInitializer?) {
         
     }
     
-    override fun onAction(action: ${featureName}Actions) {
-       
+    override fun onViewAction(action: ${featureName}Action) {
+        /*
+        when(action){
+           
+        }
+        */
     }
    
 }

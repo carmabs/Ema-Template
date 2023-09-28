@@ -6,9 +6,9 @@ fun addDestination(packageName: String,
 
 import com.bimbaylola.architecture_core.navigator.ArcNavigationEvent
 
-sealed class ${featureName}NavigationEvent : ArcNavigationEvent() {
+sealed interface ${featureName}NavigationEvent : ArcNavigationEvent {
 
     ///Add your navigation event. It can be an object or a data class if you need parameters. Ex:
-    ///object SampleNavigationEvent : ${featureName}NavigationEvent()
+    ///object SampleNavigationEvent : ${featureName}NavigationEvent
 }
 """
